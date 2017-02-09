@@ -1,0 +1,10 @@
+! ???
+? query
+/ path
+\ also path
+" will end the href string
+% url encoded stuff
+
+dir/filenames ending with dots. Windows will freak out.
+
+probably some more. why would you put weird characters in file names anyways???

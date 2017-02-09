@@ -1,0 +1,5 @@
+# redirect to .autoindex.php if no default index exists
+DirectoryIndex index.php index.html /.autoindex.php
+
+# ensure utf-8 (hopefully makes text file appear correctly)
+AddDefaultCharset UTF-8

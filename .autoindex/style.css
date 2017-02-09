@@ -1,0 +1,92 @@
+html { font: 1.6em monospace; }
+body {
+	color: #555;
+	margin: 0;
+}
+
+a {
+	text-decoration: none;
+	white-space: pre; /* in case of multiple spaces */
+}
+a:hover {
+	text-decoration: underline;
+}
+
+footer {
+	font-size: 0.8rem;
+	text-align: right;
+	padding: 8px;
+}
+footer > a { color: #AAA; }
+
+
+
+/* header */
+nav {
+	background: #DDD;
+	border-bottom: 2px solid #AAA;
+}
+nav > a {
+	color: #238;
+	
+	display: inline-block;
+	padding: 8px;
+	margin-right: 0px;
+}
+nav > a:first-child {
+	font-weight: bold;
+	font-size: 1.5rem;
+}
+nav > a::after {
+	content: '/ >';
+	color: #AAA;
+}
+nav > a:last-child::after { content: '/'; }
+
+
+
+/* content */
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+th {
+	border-bottom: 2px dashed #AAA;
+	border-left: 2px dashed #AAA;
+  padding: 2px 8px;
+	text-align: left;
+}
+th:first-child { border-left: none; }
+
+td {
+	border-left: 2px dashed #AAA;
+	padding: 2px 8px;
+}
+td:first-child { border-left: none; }
+tr:nth-child( 2n ) { background: #EEE; }
+
+
+
+/* items */
+.item {
+	color: #25D;
+	display: inline-block;
+	padding-right: 8px;
+}
+
+.item::before {
+	content: '';
+	display: inline-block;
+	height: 16px;
+	width: 16px;
+	
+	background-image: url('icons.svg');
+	margin-right: 8px;
+	vertical-align: middle;
+}
+
+ .dir::before { background-position: 0     0 }
+.file::before { background-position: -16px 0 }
+
+.file[data-mime="text/x-url"]::before { background-position: -32px 0 }

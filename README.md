@@ -1,7 +1,7 @@
 About
 -----
 Apache's mod_autoindex styling capabilities are heavily limited. This .php script tries to solve this.
-You can find a demo [here](https://desto.hercules.uberspace.de/autoindex.php/).
+You can see it in action [here](https://desto.hercules.uberspace.de/autoindex.php/).
 
 
 

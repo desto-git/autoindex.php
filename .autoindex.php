@@ -1,6 +1,6 @@
 <?php
 
-$PARSE_URL = false; // use .url files as links
+$PARSE_URL = true; // use .url files as links
 $TITLE = ''; // prefix for the title
 
 

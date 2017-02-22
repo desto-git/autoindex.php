@@ -78,9 +78,11 @@ $path = urldecode( $_SERVER['REQUEST_URI'] ); // Unicode support
 				$size = filesize( $file );
 				
 				// get file extension
-				$ext = substr( $name, strrpos( $name, '.' ) + 1 );
+				$ext = '';
+				if( $pos = strrpos( $name, '.' ) ) // has file extension in the first place
+					$ext = substr( $name, $pos + 1 );
 				
-				if( $ext === 'url' && $PARSE_URL ){
+				if( $PARSE_URL && $ext === 'url' ){
 					$href = file_get_contents( $file );
 					$mime = 'text/x-url'; // custom file type
 				}

@@ -1,17 +1,12 @@
 <?php
 
-$PARSE_URL = true; // use .url files as links
-$TITLE = ''; // prefix for the title
-
-
-
 /* for debugging
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 */
 
-
+require('.autoindex/config.php');
 
 $path = urldecode( $_SERVER['REQUEST_URI'] ); // Unicode support
 
@@ -29,7 +24,7 @@ $path = urldecode( $_SERVER['REQUEST_URI'] ); // Unicode support
 	
 	// remove first and last items as these are empty
 	array_shift( $breadcrumbs );
-	array_pop(   $breadcrumbs );
+	array_pop  ( $breadcrumbs );
 	
 	$url = '/';
 	foreach( $breadcrumbs as $crumb ){
@@ -57,11 +52,8 @@ $path = urldecode( $_SERVER['REQUEST_URI'] ); // Unicode support
 			if( $entry[0] === '.' )
 				continue;
 			
-			if( is_dir( $d->path . $entry ) )
-				$dirs[] = $entry;
-			else {
-				$files[] = $entry;
-			}
+			if( is_dir( $d->path . $entry ) ) $dirs [] = $entry;
+			else                              $files[] = $entry;
 		}
 		$d->close();
 		

@@ -61,8 +61,8 @@ $path = urldecode( $_SERVER['REQUEST_URI'] ); // Unicode support
 		$d->close();
 		
 		// sort
-		ksort( $dirs  );
-		ksort( $files );
+		ksort( $dirs,  SORT_NATURAL | SORT_FLAG_CASE );
+		ksort( $files, SORT_NATURAL | SORT_FLAG_CASE );
 		
 		// sometimes the .. folder isn't at the top (e.g. another folder starts with '(')
 		// this way it will always be the first item in the list

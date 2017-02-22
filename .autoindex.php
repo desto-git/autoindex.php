@@ -1,7 +1,8 @@
 <?php
 
-$PARSE_URL = false; // use .url files as links
+$PARSE_URL = true; // use .url files as links
 $TITLE = ''; // prefix for the title
+
 
 
 /* for debugging
@@ -9,6 +10,9 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 */
+
+
+
 $path = urldecode( $_SERVER['REQUEST_URI'] ); // Unicode support
 
 ?><!DOCTYPE html>
@@ -54,25 +58,27 @@ $path = urldecode( $_SERVER['REQUEST_URI'] ); // Unicode support
 				continue;
 			
 			if( is_dir( $d->path . $entry ) )
-				$dirs[ $entry ] = 'dir';
-			else
-				$files[ $entry ] = 'file';
+				$dirs[] = $entry;
+			else {
+				$files[] = $entry;
+			}
 		}
 		$d->close();
 		
 		// sort
-		ksort( $dirs,  SORT_NATURAL | SORT_FLAG_CASE );
-		ksort( $files, SORT_NATURAL | SORT_FLAG_CASE );
+		sort( $dirs,  SORT_NATURAL | SORT_FLAG_CASE );
+		sort( $files, SORT_NATURAL | SORT_FLAG_CASE );
 		
-		// sometimes the .. folder isn't at the top (e.g. another folder starts with '(')
-		// this way it will always be the first item in the list
-		if( $path !== '/' ) $dirs = ['..' => 'dir'] + $dirs;
+		// show .. folder, unless when already at document root
+		if( $path !== '/' ) array_unshift( $dirs, '..' );
+		
 		$items = array_merge( $dirs, $files );
 		
-		foreach( $items as $name => $type ){
+		foreach( $items as $name ){
 			$file = substr( $path, 1 ) . $name;
 			$href = './'. $name; // ./ so it works with leading spaces
 			
+			$type = is_file( $file ) ? 'file' : 'dir';
 			$mime = $size = $date = '';
 			
 			if( $type === 'file' ){

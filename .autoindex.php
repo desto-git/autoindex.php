@@ -16,6 +16,8 @@ $path = urldecode( $_SERVER['REQUEST_URI'] ); // Unicode support
 <title><?= $TITLE, $path; ?></title>
 <link rel="icon" href="/.autoindex/favicon.png">
 <link rel="stylesheet" href="/.autoindex/style.css">
+<link rel="stylesheet" href="/.autoindex/nav/nav.css">
+<link rel="stylesheet" href="/.autoindex/search/search.css">
 
 <nav><?php
 	echo '<a href="/">', $_SERVER['HTTP_HOST'], '</a>';
@@ -106,3 +108,6 @@ $path = urldecode( $_SERVER['REQUEST_URI'] ); // Unicode support
 <footer>
 	<a href="https://github.com/desto-git/autoindex.php">autoindex.php | MIT</a>
 </footer>
+
+<script src="/.autoindex/nav/nav.js"></script>
+<script src="/.autoindex/search/search.js"></script>

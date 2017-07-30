@@ -41,7 +41,9 @@ nav > a::after {
 	content: '/ >';
 	color: #AAA;
 }
-nav > a:last-child::after { content: '/'; }
+nav > a:last-child::after {
+	content: '/';
+}
 
 
 
@@ -57,14 +59,22 @@ th {
   padding: 2px 8px;
 	text-align: left;
 }
-th:first-child { border-left: none; }
+th:first-child {
+	border-left: none;
+	width: 100%;
+}
 
 td {
 	border-left: 2px dashed #AAA;
 	padding: 2px 8px;
+	white-space: nowrap;
 }
-td:first-child { border-left: none; }
-tr:nth-child( 2n ) { background: #EEE; }
+td:first-child {
+	border-left: none;
+}
+tr:nth-child( 2n ) {
+	background: #F5F5F5;
+}
 
 
 

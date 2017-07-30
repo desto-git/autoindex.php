@@ -1,0 +1,7 @@
+#search {
+	color: #BBB;
+}
+
+#search::before {
+	content: ' ';
+}

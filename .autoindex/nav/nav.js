@@ -1,22 +1,22 @@
 // allows up/down keyboard navigation
-; var nav = (function(){ 'use strict';
+; const nav = (function(){ 'use strict';
 
-var $html  = document.documentElement;
-var $items = document.getElementsByClassName('entry');
-var $line  = document.getElementsByClassName('selected')[0];
-var index  = -1;
+let $html  = document.documentElement;
+let $items = document.getElementsByClassName('entry');
+let $line  = document.getElementsByClassName('selected')[0];
+let index  = -1;
 
 
 
-var event = {
+let event = {
 	navigate: new Event('nav:userNavigation') // bound to $html
 }; 
 
 
 
 
-function getPosFromTop( $e ){
-	var offsetTop = 0;
+const getPosFromTop = function( $e ){
+	let offsetTop = 0;
 	while( $e !== null ){
 		offsetTop += $e.offsetTop;
 		$e = $e.offsetParent;
@@ -24,14 +24,14 @@ function getPosFromTop( $e ){
 	return offsetTop;
 }
 
-function scrollIntoView( $e ){
-	var viewport = {
+const scrollIntoView = function( $e ){
+	const viewport = {
 		top: $html.scrollTop,
 		bottom: window.innerHeight + $html.scrollTop
 	};
 	
-	var offsetTop = getPosFromTop( $e );
-	var element = {
+	const offsetTop = getPosFromTop( $e );
+	const element = {
 		top: offsetTop,
 		bottom: offsetTop + $e.offsetHeight
 	}
@@ -44,7 +44,7 @@ function scrollIntoView( $e ){
 
 
 
-function jumpToIndex( i ){
+const jumpToIndex = function( i ){
 	// invalid index
 	if( i < -1 || i > $items.length-1 ) return;
 	
@@ -68,7 +68,8 @@ function jumpToIndex( i ){
 $html.addEventListener( 'keydown', function( e ){
 	
 	if( e.which === 13 ){ // Enter
-		window.location = $line.firstChild.firstChild.href;
+		if( $line !== null )
+			window.location = $line.firstChild.firstChild.href;
 	}
 	
 	if( e.which === 38 || e.which === 40 ){ // Arrow Up / Down

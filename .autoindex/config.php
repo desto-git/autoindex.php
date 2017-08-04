@@ -1,12 +1,14 @@
 <?php
 
-// Check the .js files in the folders as well, they might also contain some settings to tune
-
 // Wether or not .url files will redirect to its content rather than the file itself.
 // A .url file ist just a plain text file with a .url extension containing only a link.
-$PARSE_URL = true;
+$CFG['parse_url'] = true;
 
 // The prefix to use for the title.
-$TITLE = '';
+$CFG['title'] = '';
+
+# Path to a favicon, relative from .autoindex.cfg/
+# try Ctrl + F5 or restarting your browser if it doesn't change right away
+$CFG['favicon'] = ''; // = '/.autoindex/favicon.png'
 
 ?>

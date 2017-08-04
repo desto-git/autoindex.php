@@ -1,0 +1,16 @@
+nav {
+	background: #444;
+	border-bottom: 2px solid #222;
+}
+nav > a {
+	color: #7BF;
+}
+nav > a::after {
+	color: #779;
+}
+
+
+
+.item {
+	color: #5AF;
+}

@@ -1,0 +1,11 @@
+to use custom settings, rename this dir to ".autoindex.cfg" (add a dot) and place it alongside the .autoindex.php file
+
+default settings can be found in .autoconfig/config.{js,php}
+
+file names are hardcoded, so they need be named as follows to be recognized:
+- "config.js" for javascript settings
+- "config.php" for php settings
+- "style.css" for custom styles
+
+favicon can be set via config.php, so no strict name there
+though that's only because it can be a different file type from .png, like .ico

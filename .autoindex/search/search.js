@@ -1,19 +1,24 @@
-// include a search field
-; var search = (function(){ 'use strict';
+// include a quick search ()
+; const search = (function(){ 'use strict';
 
 // clear the search field automatically
-var clear = {
-	id: null,
-	timeout: 1000
+let cfg = {
+	// timeout: 1000
+}
+
+const setConfig = function( data ){
+	if( !data ) return;
+	
+	if( typeof data.timeout === 'number' ) cfg.timeout = data.timeout;
 }
 
 
 
-var $html   = document.documentElement;
-var $items  = document.getElementsByClassName('entry');
+let $html   = document.documentElement;
+let $items  = document.getElementsByClassName('entry');
 
-var items = [];
-for( var i = 0; i < $items.length; ++i ){
+let items = [];
+for( let i = 0; i < $items.length; ++i ){
 	// toLowerCase() for case independent search
 	items.push( $items[i].firstChild.firstChild.innerText.toLowerCase() );
 }
@@ -21,20 +26,20 @@ for( var i = 0; i < $items.length; ++i ){
 
 
 // insert search field to the filename column
-var $search = document.createElement('span');
+let $search = document.createElement('span');
 $search.id = 'search';
 
-var $filename = document.querySelector('th.name');
+let $filename = document.querySelector('th.name');
 $filename.appendChild( $search );
 
 
 
-let search = function( find ){
+const search = function( find ){
 	// case independent
 	find = find.toLowerCase();
 	
 	// look for files starting with the search term
-	for( var i = 0; i < items.length; ++i ){
+	for( let i = 0; i < items.length; ++i ){
 		if( items[i].indexOf( find ) === 0 ){
 			nav.jumpToIndex( i );
 			return;
@@ -45,6 +50,18 @@ let search = function( find ){
 	nav.jumpToIndex( -1 );
 }
 
+
+
+$html.addEventListener( 'keydown', function( e ){
+	if( e.which === 8 ){ // backspace
+		if( $search.innerHTML === '' ) return;
+		
+		$search.innerHTML = '';
+		e.preventDefault();
+	}
+} );
+
+let timeoutId = null;
 $html.addEventListener( 'keypress', function( e ){
 	if( document.activeElement === $search ) return;
 
@@ -53,10 +70,10 @@ $html.addEventListener( 'keypress', function( e ){
 	// 8  = Backspace
 	// 13 = Enter
 	if( !e.ctrlKey && e.which != 0 && e.which != 8 && e.which != 13 ){
-		clearTimeout( clear.id );
-		clear.id = setTimeout( function(){
+		clearTimeout( timeoutId );
+		timeoutId = setTimeout( function(){
 			$search.innerText = '';
-		}, clear.timeout );
+		}, cfg.timeout );
 		
 		$search.innerText += String.fromCharCode( e.which );
 		search( $search.innerText );
@@ -71,6 +88,8 @@ $html.addEventListener( 'nav:userNavigation', function(){
 
 
 
-return {};
+return {
+	setConfig: setConfig
+};
 
 }());

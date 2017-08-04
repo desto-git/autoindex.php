@@ -6,18 +6,32 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 */
 
+$CFG = [];
 require('.autoindex/config.php');
+include('.autoindex.cfg/config.php');
+
+// the favicon path should start from .autoindex.cfg if it is set
+if( $CFG['favicon'] === '' )
+	$CFG['favicon'] = '/.autoindex/favicon.png';
+else
+	$CFG['favicon'] = '/.autoindex.cfg/' . $CFG['favicon'];
+
+
 
 $path = urldecode( $_SERVER['REQUEST_URI'] ); // Unicode support
 
 ?><!DOCTYPE html>
 
 <meta charset="utf-8">
-<title><?= $TITLE, $path; ?></title>
-<link rel="icon" href="/.autoindex/favicon.png">
+<title><?= $CFG['title'], $path; ?></title>
+<link rel="icon" href="<?= $CFG['favicon']; ?>">
 <link rel="stylesheet" href="/.autoindex/style.css">
 <link rel="stylesheet" href="/.autoindex/nav/nav.css">
 <link rel="stylesheet" href="/.autoindex/search/search.css">
+<?php
+	if( file_exists('.autoindex.cfg/style.css') )
+		echo '<link rel="stylesheet" href="/.autoindex.cfg/style.css">';
+?>
 
 <nav><?php
 	echo '<a href="/">', $_SERVER['HTTP_HOST'], '</a>';
@@ -84,7 +98,7 @@ $path = urldecode( $_SERVER['REQUEST_URI'] ); // Unicode support
 				if( $pos = strrpos( $name, '.' ) ) // has file extension in the first place
 					$ext = substr( $name, $pos + 1 );
 				
-				if( $PARSE_URL && $ext === 'url' ){
+				if( $CFG['parse_urldecode'] && $ext === 'url' ){
 					$href = file_get_contents( $file );
 					$mime = 'text/x-url'; // custom file type
 				}
@@ -111,3 +125,8 @@ $path = urldecode( $_SERVER['REQUEST_URI'] ); // Unicode support
 
 <script src="/.autoindex/nav/nav.js"></script>
 <script src="/.autoindex/search/search.js"></script>
+<script src="/.autoindex/config.js"></script>
+<?php
+	if( file_exists('.autoindex.cfg/config.js') )
+		echo '<script src="/.autoindex.cfg/config.js"></script>';
+?>

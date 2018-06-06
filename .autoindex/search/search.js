@@ -3,12 +3,12 @@
 
 // clear the search field automatically
 let cfg = {
-	// timeout: 1000
+	// timeout: number
 }
 
 const setConfig = function( data ){
 	if( !data ) return;
-	
+
 	if( typeof data.timeout === 'number' ) cfg.timeout = data.timeout;
 }
 
@@ -37,7 +37,7 @@ $filename.appendChild( $search );
 const search = function( find ){
 	// case independent
 	find = find.toLowerCase();
-	
+
 	// look for files starting with the search term
 	for( let i = 0; i < items.length; ++i ){
 		if( items[i].indexOf( find ) === 0 ){
@@ -45,7 +45,7 @@ const search = function( find ){
 			return;
 		}
 	}
-	
+
 	// no matches, remove selection
 	nav.jumpToIndex( -1 );
 }
@@ -55,7 +55,7 @@ const search = function( find ){
 $html.addEventListener( 'keydown', function( e ){
 	if( e.which === 8 ){ // backspace
 		if( $search.innerHTML === '' ) return;
-		
+
 		$search.innerHTML = '';
 		e.preventDefault();
 	}
@@ -74,7 +74,7 @@ $html.addEventListener( 'keypress', function( e ){
 		timeoutId = setTimeout( function(){
 			$search.innerText = '';
 		}, cfg.timeout );
-		
+
 		$search.innerText += String.fromCharCode( e.which );
 		search( $search.innerText );
 	}

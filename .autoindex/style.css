@@ -30,10 +30,12 @@ nav {
 }
 nav > a {
 	color: #238;
-	
+
 	display: inline-block;
 	padding: 8px;
-	margin-right: 0px;
+}
+nav > a::after {
+	display: inline-block;
 }
 nav > a:first-child {
 	font-weight: bold;
@@ -92,7 +94,7 @@ tr:nth-child( 2n ) {
 	display: inline-block;
 	height: 16px;
 	width: 16px;
-	
+
 	background-image: url('icons.svg');
 	margin-right: 8px;
 	vertical-align: middle;

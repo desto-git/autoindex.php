@@ -8,9 +8,11 @@ error_reporting(E_ALL);
 
 $CFG = [];
 require('.autoindex/config.php');
+if( file_exists('.autoindex.cfg/config.php') )
 include('.autoindex.cfg/config.php');
 
 // the favicon path should start from .autoindex.cfg if it is set
+// this setting exists because the favicon can have various formats
 if( $CFG['favicon'] === '' )
 	$CFG['favicon'] = '/.autoindex/favicon.png';
 else

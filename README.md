@@ -13,4 +13,4 @@ Throw the `.autoindex` folder, `.autoindex.php` and `.htaccess` into the root of
 
 Customization
 -------------
-To change some default configurations and styles, use the `.autoconfig.cfg` directory. It isn't available by default, so it won't be accidentally overwritten in case of an update. The `example` folder contains a sample config directory with further instructions.
+To change some default configurations and styles, use the `.autoindex.cfg` directory. It isn't available by default, so it won't be accidentally overwritten in case of an update. The `example` folder contains a sample config directory with further instructions.
